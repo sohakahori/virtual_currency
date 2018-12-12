@@ -16,6 +16,11 @@ module VirtualCurrency
       g.test_framework false
     end
 
+    config.i18n.default_locale = :ja
+
+    # ja.ymlファイル等を起動時に読み込む
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      coin: コイン
+    attributes:
+      name: コイン名
+      name_kana: コイン名(カタカナ)
+      market_rank: 時価ランキング
