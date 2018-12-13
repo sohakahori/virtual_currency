@@ -1,0 +1,21 @@
+<div class="page-header">
+  <h1>取り扱いコイン</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>コイン名</th>
+      <th>コイン名(カタカナ)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @coins.each do |coin| %>
+      <tr>
+        <td><%= coin.id %></td>
+        <td><%= coin.name %></td>
+        <td><%= coin.name_kana %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
