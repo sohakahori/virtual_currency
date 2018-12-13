@@ -32,8 +32,11 @@ gem 'jbuilder', '~> 2.5'
 #
 #
 gem 'therubyracer' # javascript runtime。lessをコンパイルするために必要
-gem 'less-rails' # Railsでlessを使えるようにする。Bootstrapがlessで書かれているため
+gem 'less-rails', git: 'https://github.com/MustafaZain/less-rails' # Railsでlessを使えるようにする。Bootstrapがlessで書かれているため
 gem 'twitter-bootstrap-rails' # Bootstrapの本体
+
+gem 'devise'
+# gem 'devise-bootstrap-views'
 
 
 # Use Capistrano for deployment

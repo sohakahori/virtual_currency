@@ -2,7 +2,19 @@ ja:
   activerecord:
     models:
       coin: コイン
+      admin: 管理者
     attributes:
-      name: コイン名
-      name_kana: コイン名(カタカナ)
-      market_rank: 時価ランキング
+      coin:
+        name: コイン名
+        name_kana: コイン名(カタカナ)
+        market_rank: 時価ランキング
+      admin:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        first_name: 名前
+        last_name: 苗字
+
+  errors:
+    messages:
+      not_saved: 管理者を登録できませんでした
