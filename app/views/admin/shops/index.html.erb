@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>取引所</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>取引所名</th>
+      <th>住所</th>
+      <th>会社名</th>
+      <th>取り扱いコイン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shops.each do |shop| %>
+      <tr>
+        <td><%= shop.id %></td>
+        <td><%= shop.name %></td>
+        <td><%= shop.address %></td>
+        <td><%= shop.company %></td>
+        <td>
+          <% shop.coins.each do |coin| %>
+            <%= coin.name %><br>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div>
+  <%= paginate @shops, class: "page-link" %>
+</div>
+

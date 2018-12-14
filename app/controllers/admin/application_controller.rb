@@ -3,4 +3,5 @@ class Admin::ApplicationController < ApplicationController
   layout 'admin'
   before_action :authenticate_admin!
 
+  PER_PAGE= 30
 end

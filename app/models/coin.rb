@@ -1,5 +1,9 @@
 class Coin < ApplicationRecord
 
+  # アソシエーション
+  has_many :coin_shops, dependent: :destroy
+  has_many :shops, through: :coin_shops
+
   # バリデーション
   validates :name, uniqueness: true
   validates :market_rank,

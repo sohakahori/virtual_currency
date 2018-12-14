@@ -35,6 +35,8 @@ gem 'therubyracer' # javascript runtime。lessをコンパイルするために�
 gem 'less-rails', git: 'https://github.com/MustafaZain/less-rails' # Railsでlessを使えるようにする。Bootstrapがlessで書かれているため
 gem 'twitter-bootstrap-rails' # Bootstrapの本体
 
+gem 'faker'
+
 gem 'devise'
 # gem 'devise-bootstrap-views'
 
@@ -44,6 +46,9 @@ gem 'devise'
 
 
 gem 'rails-i18n'
+
+gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
