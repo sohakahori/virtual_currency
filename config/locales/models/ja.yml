@@ -3,6 +3,7 @@ ja:
     models:
       coin: コイン
       admin: 管理者
+      shop: 取引所
     attributes:
       coin:
         name: コイン名
@@ -14,6 +15,11 @@ ja:
         password_confirmation: 確認用パスワード
         first_name: 名前
         last_name: 苗字
+      shop:
+        name: 取引所名
+        address: 住所
+        company: 会社名
+        coin_shops: 取り扱いコイン
 
   errors:
     messages:
