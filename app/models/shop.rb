@@ -7,5 +7,5 @@ class Shop < ApplicationRecord
   validates :name, presence: true
   validates :address, presence: true
   validates :company, presence: true
-  validates :coin_shops, presence: true
+  # validates :coin_shops, presence: true
 end
