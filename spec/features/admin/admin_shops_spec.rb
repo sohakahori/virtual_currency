@@ -131,4 +131,17 @@ RSpec.feature "Admin::Shops", type: :feature do
       end
     end
   end
+
+  describe "# 削除", forcus: true do
+    it "取引所を削除できる" do
+      visit admin_coins_path
+      click_on "取引所一覧"
+      find("#shop_#{shop.id}").click
+      before_delete_coin_shop_count = CoinShop.count
+      expect {
+        click_on "削除"
+      }. to change(Shop, :count).by(-1)
+      expect(before_delete_coin_shop_count).not_to eq CoinShop.count
+    end
+  end
 end
