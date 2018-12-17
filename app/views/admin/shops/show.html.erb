@@ -1,0 +1,23 @@
+<%- model_class = Shop -%>
+<div class="page-header">
+  <h1>取引所詳細</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>取引所名:</strong></dt>
+  <dd><%= @shop.name %></dd>
+  <dt><strong>住所:</strong></dt>
+  <dd><%= @shop.address %></dd>
+  <dt><strong>会社名:</strong></dt>
+  <dd><%= @shop.company %></dd>
+  <dt><strong>取り扱いコイン:</strong></dt>
+  <dd>
+    <% @shop.coins.each do |coin| %>
+      <%= coin.name %><br>
+    <% end %>
+  </dd>
+</dl>
+<div><%= link_to "編集", edit_admin_shop_path(@shop), class: "btn btn-success" %></div>
+
+
+
