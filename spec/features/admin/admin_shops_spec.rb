@@ -6,6 +6,8 @@ RSpec.feature "Admin::Shops", type: :feature do
   let!(:shop) { FactoryBot.create(:shop, name: "コインチェック") }
   before do
     sign_in admin
+
+    FactoryBot.create(:coin_shop, coin: coin1, shop: shop)
     (2..40).each do |i|
       FactoryBot.create(:shop, name: "取引所#{i}")
     end
@@ -17,6 +19,9 @@ RSpec.feature "Admin::Shops", type: :feature do
       click_on "取引所一覧"
       expect(page).to have_content "取引所"
       expect(page).to have_content shop.name
+      shop.coins.each do |coin|
+        expect(page).to have_content coin.name
+      end
       expect(page).to have_content "取引所30"
       expect(page).not_to have_content "取引所31"
 
@@ -26,7 +31,21 @@ RSpec.feature "Admin::Shops", type: :feature do
     end
   end
 
-  describe "# 作成画面" do
+  describe "# 詳細ページ" do
+    it "取引所詳細が表示される" do
+      visit admin_coins_path
+      click_on "取引所一覧"
+      find("#shop_#{shop.id}").click
+      expect(page).to have_content "取引所詳細"
+      expect(page).to have_content shop.name
+      expect(page).to have_content shop.address
+      shop.coins.each do |coin|
+        expect(page).to have_content coin.name
+      end
+    end
+  end
+
+  describe "# 作成処理" do
     context "正常系" do
       it "取引所を作成できる" do
         visit admin_coins_path
@@ -62,6 +81,52 @@ RSpec.feature "Admin::Shops", type: :feature do
           check "#{coin1.name}"
           click_on "登録する"
         }.to change(Shop, :count).by(0)
+        expect(page).to have_content "不正な入力値です"
+      end
+    end
+  end
+
+  describe "# 更新処理" do
+    let!(:coin2) { FactoryBot.create(:coin, name: "リップル") }
+
+    context "正常系" do
+      it "取引所が更新できる" do
+        visit admin_coins_path
+        click_on "取引所一覧"
+        find("#shop_#{shop.id}").click
+        expect(page).to have_content "取引所詳細"
+        click_on "編集"
+        old_coin_shop_ids = shop.coin_shops.ids
+        fill_in "取引所名", with: "取引所名更新"
+        fill_in "住所", with: "住所更新"
+        fill_in "会社名", with: "会社名更新"
+        uncheck('ビットコイン')
+        check('リップル')
+        click_on "更新"
+        expect(page).to have_content "取引所名更新"
+        expect(page).to have_content "会社名更新"
+        expect(page).to have_content "住所更新"
+        expect(page).not_to have_content "ビットコイン"
+        expect(page).to have_content "リップル"
+        expect(old_coin_shop_ids).not_to eq shop.coin_shops.ids
+      end
+    end
+
+    context "異常系(バリデーション)" do
+      it "取引所を更新できない" do
+        visit admin_coins_path
+        click_on "取引所一覧"
+        find("#shop_#{shop.id}").click
+        expect(page).to have_content "取引所詳細"
+        click_on "編集"
+        fill_in "取引所名", with: nil
+        fill_in "住所", with: "住所更新"
+        fill_in "会社名", with: "会社名更新"
+        uncheck('ビットコイン')
+        check('リップル')
+        click_on "更新"
+
+        expect(shop.reload.address).not_to eq "住所更新"
         expect(page).to have_content "不正な入力値です"
       end
     end
