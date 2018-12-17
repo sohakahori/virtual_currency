@@ -1,6 +1,6 @@
 class Admin::ShopsController < Admin::ApplicationController
 
-  before_action :get_shop, only: [:show, :edit, :update]
+  before_action :get_shop, only: [:show, :edit, :update, :destroy]
 
   def index
     @shops = Shop.page(params[:page]).per(PER_PAGE)
@@ -36,6 +36,18 @@ class Admin::ShopsController < Admin::ApplicationController
       flash.now[:danger] = "不正な入力値です"
       render :edit
     end
+  end
+
+  def destroy
+    begin
+      @shop.destroy!
+    rescue => e
+      flash[:danger] = "取引所の削除に失敗しました"
+      logger.error "[error] #{e.message}"
+      redirect_back(fallback_location: admin_shops_path) and return
+    end
+    flash[:success] = "取引所を削除しました"
+    redirect_to admin_shops_path
   end
 
 
