@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :coins
     resources :shops
+    resources :admins, except: [:edit, :update]
   end
 end
 

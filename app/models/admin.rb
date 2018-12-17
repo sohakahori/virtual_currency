@@ -7,4 +7,7 @@ class Admin < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+
+  # スコープ
+  scope :order_updated_at, -> { order("updated_at DESC") }
 end
