@@ -3,7 +3,19 @@ class Admin::ShopsController < Admin::ApplicationController
   before_action :get_shop, only: [:show, :edit, :update, :destroy]
 
   def index
-    @shops = Shop.page(params[:page]).per(PER_PAGE)
+    @q = params[:q]
+    @coin_ids = params[:coin_ids].present? ? params[:coin_ids] : []
+
+    # Todo: 不備あり
+    @shops = Shop.joins(:coins)
+    if @q.present?
+      @shops = @shops.search_name(@q).or(@shops.search_address(@q)).or(@shops.search_company(@q))
+    end
+    # Todo: リファクタリング
+    if @coin_ids.present?
+      @shops = @shops.where(coins: { id: @coin_ids })
+    end
+    @shops = @shops.page(params[:page]).per(PER_PAGE)
   end
 
   def new
