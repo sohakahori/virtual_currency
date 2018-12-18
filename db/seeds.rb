@@ -39,6 +39,10 @@ CoinShop.create!(shop: shop2, coin: coin1)
 CoinShop.create!(shop: shop2, coin: coin2)
 CoinShop.create!(shop: shop2, coin: coin3)
 
+(1..40).each do |i|
+  Admin.create(first_name: "first_name#{i}", last_name: "last_name#{i}", email: "test_email#{i}@test.com", password: "testtest")
+end
+
 
 
 

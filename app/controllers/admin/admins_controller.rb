@@ -2,7 +2,15 @@ class Admin::AdminsController < Admin::ApplicationController
   before_action :get_adnin, only: [:show, :destroy]
 
   def index
-    @admins = Admin.order_updated_at.page(params[:page]).per(PER_PAGE)
+    @q = params[:q]
+    @admins = Admin
+    if @q.present?
+      @admins = @admins.search_first_name(@q).
+          or(@admins.search_last_name(@q)).
+          or(@admins.search_email(@q)).
+          or(@admins.search_full_name(@q))
+    end
+    @admins = @admins.order_updated_at.page(params[:page]).per(PER_PAGE)
   end
 
   def new
