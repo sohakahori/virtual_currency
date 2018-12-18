@@ -15,6 +15,61 @@ RSpec.feature "Admin::Admins", type: :feature do
       expect(page).to have_content "管理者一覧"
       expect(page).to have_content admin.first_name
     end
+
+    context "検索処理" do
+      let!(:search_first_name_admin) { FactoryBot.create(:admin, first_name: "花子", last_name: "山田") }
+      let!(:search_last_name_admin) { FactoryBot.create(:admin, last_name: "桃井", first_name: "太郎") }
+      let!(:search_full_name_admin) { FactoryBot.create(:admin, first_name: "full_first_name", last_name: "full_last_name") }
+      let!(:search_email_admin) { FactoryBot.create(:admin, email: "search@search.com") }
+
+      it "検索された管理者一覧が表示される(first_name)" do
+        visit admin_coins_path
+        click_on "管理者一覧"
+        expect(page).to have_content "管理者一覧"
+        fill_in "q", with: search_first_name_admin.first_name
+        click_on "検索"
+        expect(page).to have_content search_first_name_admin.first_name
+        expect(page).not_to have_content search_full_name_admin.first_name
+        expect(page).not_to have_content search_last_name_admin.first_name
+        expect(page).not_to have_content search_email_admin.first_name
+      end
+
+      it "検索された管理者一覧が表示される(last_name)" do
+        visit admin_coins_path
+        click_on "管理者一覧"
+        expect(page).to have_content "管理者一覧"
+        fill_in "q", with: search_last_name_admin.last_name
+        click_on "検索"
+        expect(page).to have_content search_last_name_admin.last_name
+        expect(page).not_to have_content search_full_name_admin.last_name
+        expect(page).not_to have_content search_first_name_admin.last_name
+        expect(page).not_to have_content search_email_admin.last_name
+      end
+
+      it "検索された管理者一覧が表示される(full_name)" do
+        visit admin_coins_path
+        click_on "管理者一覧"
+        expect(page).to have_content "管理者一覧"
+        fill_in "q", with: "#{search_full_name_admin.last_name} #{search_full_name_admin.first_name}"
+        click_on "検索"
+        expect(page).to have_content search_full_name_admin.first_name
+        expect(page).not_to have_content search_last_name_admin.first_name
+        expect(page).not_to have_content search_first_name_admin.first_name
+        expect(page).not_to have_content search_email_admin.first_name
+      end
+
+      it "検索された管理者一覧が表示される(email)" do
+        visit admin_coins_path
+        click_on "管理者一覧"
+        expect(page).to have_content "管理者一覧"
+        fill_in "q", with: search_email_admin.email
+        click_on "検索"
+        expect(page).to have_content search_email_admin.email
+        expect(page).not_to have_content search_full_name_admin.email
+        expect(page).not_to have_content search_last_name_admin.email
+        expect(page).not_to have_content search_first_name_admin.email
+      end
+    end
   end
 
   describe "管理者作成" do
