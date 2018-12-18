@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Admin, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
   #
-  context "バリデーション適用", forcus: true do # deviseのバリデーションは省略
+  context "バリデーション適用" do # deviseのバリデーションは省略
     it "first_nameが未入力の時はバリデーションが適用される" do
       admin = FactoryBot.build(:admin, first_name: nil)
       admin.valid?

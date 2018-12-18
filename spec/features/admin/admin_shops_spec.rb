@@ -132,7 +132,7 @@ RSpec.feature "Admin::Shops", type: :feature do
     end
   end
 
-  describe "# 削除", forcus: true do
+  describe "# 削除" do
     it "取引所を削除できる" do
       visit admin_coins_path
       click_on "取引所一覧"
