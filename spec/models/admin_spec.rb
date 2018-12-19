@@ -19,9 +19,8 @@ RSpec.describe Admin, type: :model do
 
   context "バリデーション未適用" do
     it "入力値が正しい時はバリデーションが適用されない" do
-      admin = FactoryBot.build(:admin, first_name: "first_name", last_name: "last_name")
-      admin.valid?
-      expect(admin[:forcus]).to eq true
+      admin = FactoryBot.build(:admin, first_name: "first_name", last_name: "last_name", email: "test@test.com", password: "testtest")
+      expect(admin.valid?).to eq true
     end
   end
 end
