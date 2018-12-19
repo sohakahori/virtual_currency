@@ -2,14 +2,18 @@ require 'rails_helper'
 
 RSpec.feature "Admin::Shops", type: :feature do
   let!(:coin1) { FactoryBot.create(:coin, name: "ビットコイン") }
+  let!(:coin2) { FactoryBot.create(:coin, name: "リップル") }
   let(:admin) { FactoryBot.create(:admin) }
   let!(:shop) { FactoryBot.create(:shop, name: "コインチェック") }
+  let!(:other_shop) { FactoryBot.create(:shop, name: "バイナンス") }
   before do
     sign_in admin
 
     FactoryBot.create(:coin_shop, coin: coin1, shop: shop)
-    (2..40).each do |i|
-      FactoryBot.create(:shop, name: "取引所#{i}")
+    FactoryBot.create(:coin_shop, coin: coin2, shop: other_shop)
+    (3..40).each do |i|
+      create_shop = FactoryBot.create(:shop, name: "取引所#{i}", address: "東京都港区芝浦#{i}", company: "株式会社仮想通貨カンパニー#{i}")
+      FactoryBot.create(:coin_shop, coin: coin2, shop: create_shop)
     end
   end
 
@@ -28,6 +32,52 @@ RSpec.feature "Admin::Shops", type: :feature do
       click_on "2"
       expect(page).not_to have_content "取引所30"
       expect(page).to have_content "取引所31"
+    end
+
+    it "検索結果が表示されること(name)" do
+      visit admin_coins_path
+      click_on "取引所一覧"
+      fill_in "q", with: "取引所3"
+      click_on "検索"
+      expect(page).to have_content "取引所3"
+      expect(page).not_to have_content "取引所4"
+    end
+
+    it "検索結果が表示されること(company)" do
+      visit admin_coins_path
+      click_on "取引所一覧"
+      fill_in "q", with: "株式会社仮想通貨カンパニー3"
+      click_on "検索"
+      expect(page).to have_content "株式会社仮想通貨カンパニー3"
+      expect(page).not_to have_content "株式会社仮想通貨カンパニー4"
+    end
+
+    it "検索結果が表示されること(address)" do
+      visit admin_coins_path
+      click_on "取引所一覧"
+      fill_in "q", with: "東京都港区芝浦3"
+      click_on "検索"
+      expect(page).to have_content "東京都港区芝浦3"
+      expect(page).not_to have_content "東京都港区芝浦4"
+    end
+
+    it "検索結果が表示されること(取り扱い通貨)" do
+      visit admin_coins_path
+      click_on "取引所一覧"
+      check "coin_#{coin1.id}"
+      click_on "検索"
+      expect(page).to have_content shop.name
+      expect(page).not_to have_content other_shop.name
+    end
+
+    it "検索結果が表示されること(取り扱い通貨・name)" do
+      visit admin_coins_path
+      click_on "取引所一覧"
+      fill_in "q", with: shop.name
+      check "coin_#{coin1.id}"
+      click_on "検索"
+      expect(page).to have_content shop.name
+      expect(page).not_to have_content other_shop.name
     end
   end
 
@@ -87,8 +137,6 @@ RSpec.feature "Admin::Shops", type: :feature do
   end
 
   describe "# 更新処理" do
-    let!(:coin2) { FactoryBot.create(:coin, name: "リップル") }
-
     context "正常系" do
       it "取引所が更新できる" do
         visit admin_coins_path
