@@ -13,4 +13,5 @@ class Coin < ApplicationRecord
 
   # スコープ
   scope :order_market_rank, -> { order("market_rank ASC") }
+  scope :coin_ids, ->(ids) { where(id: ids) }
 end

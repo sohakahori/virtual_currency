@@ -10,12 +10,7 @@
     <div class="form-group">
       <div class="col-lg-10">
         <% Coin.all.each.with_index(1) do |coin, i| %>
-<!--          Todo: リファクタリング-->
-          <% if @coin_ids.include?(coin.id.to_s) %>
-            <%= check_box_tag  "coin_ids[]", coin.id, true %>
-          <% else %>
-            <%= check_box_tag  "coin_ids[]", coin.id, false %>
-          <% end %>
+          <%= get_coin_check_box_tag(coin.id) %>
           <%= label_tag :coin_name, coin.name %>
           <% if i % 6 == 0 %>
             <br>
@@ -50,7 +45,7 @@
         <td><%= shop.address %></td>
         <td><%= shop.company %></td>
         <td>
-          <% shop.coins.each do |coin| %>
+          <% shop.coins.reload.each do |coin| %>
             <%= coin.name %><br>
           <% end %>
         </td>
