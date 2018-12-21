@@ -6,7 +6,8 @@
     <tr>
       <th>ID</th>
       <th>コイン名</th>
-      <th>コイン名(カタカナ)</th>
+      <th>コイン名(省略名)</th>
+      <th>時価総額</th>
     </tr>
   </thead>
   <tbody>
@@ -14,7 +15,8 @@
       <tr>
         <td><%= coin.id %></td>
         <td><%= coin.name %></td>
-        <td><%= coin.name_kana %></td>
+        <td><%= coin.symbol %></td>
+        <td>¥<%= coin.market_cap_jpy %></td>
       </tr>
     <% end %>
   </tbody>

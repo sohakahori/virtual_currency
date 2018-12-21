@@ -8,9 +8,9 @@ RSpec.feature "Admin::Coins", type: :feature do
     sign_in admin
   end
 
-  let!(:coin1) { FactoryBot.create(:coin, name: "ビットコイン", market_rank: 1) }
-  let!(:coin2) { FactoryBot.create(:coin, name: "リップル", market_rank: 2) }
-  let!(:coin3) { FactoryBot.create(:coin, name: "イーサリアム", market_rank: 3) }
+  let!(:coin1) { FactoryBot.create(:coin, name: "ビットコイン", rank: 1) }
+  let!(:coin2) { FactoryBot.create(:coin, name: "リップル", rank: 2) }
+  let!(:coin3) { FactoryBot.create(:coin, name: "イーサリアム", rank: 3) }
 
   describe "# index" do
     it "コイン一覧が表示されること" do
