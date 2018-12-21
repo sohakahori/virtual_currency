@@ -6,12 +6,14 @@ class Coin < ApplicationRecord
 
   # バリデーション
   validates :name, uniqueness: true
-  validates :market_rank,
+  validates :coin_market_cap_id, uniqueness: true
+  validates :symbol, uniqueness: true
+  validates :rank,
             uniqueness: true,
             :numericality => { :only_integer => true }
 
 
   # スコープ
-  scope :order_market_rank, -> { order("market_rank ASC") }
+  scope :order_market_rank, -> { order("rank ASC") }
   scope :coin_ids, ->(ids) { where(id: ids) }
 end

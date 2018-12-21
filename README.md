@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## 自作rakeコマンド
+* coinsマスターデータをインサート
+
+`rake db:coins_create`
+

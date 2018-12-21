@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181214041007) do
+ActiveRecord::Schema.define(version: 20181221080843) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "first_name"
@@ -36,12 +36,13 @@ ActiveRecord::Schema.define(version: 20181214041007) do
   end
 
   create_table "coins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "coin_market_cap_id", null: false
     t.string "name", null: false
-    t.string "name_kana"
-    t.integer "market_rank", null: false
+    t.string "symbol", null: false
+    t.integer "rank", null: false
+    t.string "market_cap_jpy", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["market_rank"], name: "index_coins_on_market_rank", unique: true
     t.index ["name"], name: "index_coins_on_name", unique: true
   end
 
