@@ -28,3 +28,8 @@ Things you may want to cover:
 
 `rake db:coins_create`
 
+* coinsマスターデータをアップデート
+(時価総額、時価ランキング等)
+
+`rake db:coins_create`
+
