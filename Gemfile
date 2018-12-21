@@ -61,6 +61,8 @@ group :development, :test do
 
   # バルクインサート
   gem 'activerecord-import'
+
+  gem 'active_decorator'
 end
 
 group :development do
