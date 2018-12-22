@@ -63,4 +63,16 @@ Rails.application.configure do
     Bullet.console = true # ブラウザのコンソールログに記録
     Bullet.rails_logger = true # Railsログに出力
   end
+
+  # メーラー設定
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV["SAKURA_MAIL_DOMAIN"],
+    port:                 587,
+    domain:               ENV["SAKURA_MAIL_DOMAIN"],
+    user_name:            ENV["SAKURA_MAIL_ADDRESS"],
+    password:             ENV["SAKURA_MAIL_PASSWORD"],
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
 end

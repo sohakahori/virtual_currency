@@ -50,6 +50,13 @@ gem 'rails-i18n'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 
+gem 'dotenv-rails'
+
+# バルクインサート
+gem 'activerecord-import'
+
+gem 'active_decorator'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
   gem "factory_bot_rails", "~> 4.10.0"
@@ -59,10 +66,6 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 
-  # バルクインサート
-  gem 'activerecord-import'
-
-  gem 'active_decorator'
 end
 
 group :development do
