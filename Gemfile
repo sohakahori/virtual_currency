@@ -38,6 +38,7 @@ gem 'twitter-bootstrap-rails' # Bootstrapの本体
 gem 'faker'
 
 gem 'devise'
+
 # gem 'devise-bootstrap-views'
 
 
@@ -56,6 +57,9 @@ gem 'dotenv-rails'
 gem 'activerecord-import'
 
 gem 'active_decorator'
+
+# クーロン
+gem 'whenever'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
