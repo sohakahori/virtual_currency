@@ -18,6 +18,15 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :coins, only: :index
+
+  end
+
+  scope module: :user do
+    devise_for :users, controllers: {
+      sessions: 'public/users/sessions',
+      registrations: 'public/users/registrations',
+      passwords: 'public/users/passwords'
+    }
   end
 end
 

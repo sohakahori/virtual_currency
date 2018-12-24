@@ -2,10 +2,20 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
-    admin_coins_path
+    case resource
+    when Admin
+      admin_coins_path
+    when User
+      public_coins_path
+  end
   end
 
   def after_sign_out_path_for(resource)
-    new_admin_session_path
+    case resource
+    when :admin
+      new_admin_session_path
+    when :user
+      new_user_session_path
+    end
   end
 end
