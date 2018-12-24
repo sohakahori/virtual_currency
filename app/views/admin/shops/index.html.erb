@@ -7,19 +7,18 @@
       </div>
     </div>
     <br><br><br>
-    <div class="form-group">
-      <div class="col-lg-10">
-        <% Coin.all.each.with_index(1) do |coin, i| %>
-          <%= get_coin_check_box_tag(coin.id) %>
-          <%= label_tag :coin_name, coin.name %>
-          <% if i % 6 == 0 %>
-            <br>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
 
-    <%= submit_tag "検索", class: 'btn btn-primary' %>
+    <div>
+      <% @coins.each.with_index(1) do |coin, i| %>
+        <%= get_coin_check_box_tag(coin.id) %>
+        <%= label_tag :coin_name, coin.name %>
+        <% if i % 6 == 0 %>
+          <br>
+        <% end %>
+      <% end %>
+    </div>
+    <br><br>
+    <div><%= submit_tag "検索", class: 'btn btn-primary' %></div>
   <% end %>
   <br><br><br>
   <div>

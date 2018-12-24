@@ -13,6 +13,7 @@ class Admin::ShopsController < Admin::ApplicationController
     if @coin_ids.present?
       @shops = @shops.merge(Coin.coin_ids(@coin_ids))
     end
+    @coins = Coin.all
     @shops = @shops.page(params[:page]).per(PER_PAGE)
   end
 
