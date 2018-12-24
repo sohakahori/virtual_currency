@@ -41,11 +41,14 @@ namespace :db do
       end
       Coin.import update_coins, on_duplicate_key_update:[:name, :symbol, :rank, :market_cap_jpy]
     rescue => e
+      CoinUpdateNotificationMailer.notification_nosuccess_email().deliver
       puts "処理失敗"
       p e.message
       next
     end
+    CoinUpdateNotificationMailer.notification_success_email().deliver
     puts "コインの更新が完了しました"
+    next
   end
 
   private
