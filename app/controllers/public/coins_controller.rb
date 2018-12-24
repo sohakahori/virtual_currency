@@ -1,4 +1,4 @@
-class Public::CoinsController < ApplicationController
+class Public::CoinsController < Public::ApplicationController
 
   def index
     @coins = Coin.all
