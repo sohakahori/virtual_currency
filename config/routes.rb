@@ -15,5 +15,9 @@ Rails.application.routes.draw do
     resources :shops
     resources :admins, except: [:edit, :update]
   end
+
+  namespace :public do
+    resources :coins, only: :index
+  end
 end
 
