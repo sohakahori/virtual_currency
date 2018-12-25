@@ -4,6 +4,7 @@ ja:
       coin: コイン
       admin: 管理者
       shop: 取引所
+      user: ユーザー
     attributes:
       coin:
         name: コイン名
@@ -20,7 +21,13 @@ ja:
         address: 住所
         company: 会社名
         coin_shops: 取り扱いコイン
-
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        first_name: 名前
+        last_name: 苗字
+        nickname: ニックネーム
   errors:
     messages:
       not_saved: 管理者を登録できませんでした
