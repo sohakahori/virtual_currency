@@ -8,6 +8,7 @@
       <th>住所</th>
       <th>会社名</th>
       <th>取り扱いコイン</th>
+      <th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -21,6 +22,7 @@
             <%= coin.name %><br>
           <% end %>
         </td>
+        <td><%= link_to "詳細", public_shop_path(shop), id: "shop_#{shop.id}", class: "btn btn-info" %></td>
       </tr>
     <% end %>
   </tbody>
