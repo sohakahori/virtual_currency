@@ -1,6 +1,6 @@
 class Public::CoinsController < Public::ApplicationController
 
   def index
-    @coins = Coin.all
+    @coins = Coin.order_market_rank
   end
 end
