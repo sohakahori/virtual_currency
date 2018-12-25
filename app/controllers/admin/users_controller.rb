@@ -18,10 +18,10 @@ class Admin::UsersController < Admin::ApplicationController
       user = User.find(params[:id])
       user.destroy!
     rescue => e
+      logger.error "[error] #{e.message}"
       flash[:danger] = "ユーザーの削除に失敗しました"
       redirect_back(fallback_location: admin_users_path) and return
     end
-    logger.error "[error] #{e.message}"
     flash[:success] = "ユーザーを削除しました"
     redirect_back(fallback_location: admin_users_path) and return
   end
