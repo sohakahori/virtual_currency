@@ -3,11 +3,6 @@ require 'rails_helper'
 RSpec.feature "Public::Coins", type: :feature do
   # pending "add some scenarios (or delete) #{__FILE__}"
 
-  let(:admin) { FactoryBot.create(:admin) }
-  before do
-    sign_in admin
-  end
-
   let!(:coin1) { FactoryBot.create(:coin, name: "ビットコイン", rank: 1) }
   let!(:coin2) { FactoryBot.create(:coin, name: "リップル", rank: 2) }
   let!(:coin3) { FactoryBot.create(:coin, name: "イーサリアム", rank: 3) }
