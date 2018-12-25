@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # 論理削除
+  acts_as_paranoid
+
+
   # バリデーション
   validates :first_name, presence: true
   validates :last_name, presence: true

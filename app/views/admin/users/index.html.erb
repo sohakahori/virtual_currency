@@ -19,6 +19,7 @@
       <th>メールアドレス</th>
       <th>作成日時</th>
       <th>更新日時</th>
+      <th>削除</th>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +32,7 @@
         <td><%= user.email %></td>
         <td><%= user.format_created_at %></td>
         <td><%= user.format_updated_at %></td>
+        <td><%= link_to "削除", admin_user_path(user), class: "btn btn-danger", id: "user_#{user.id}", method: :delete, data: {confirm: "削除してよろしいでしょうか？"} %></td>
       </tr>
     <% end %>
   </tbody>
