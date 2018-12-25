@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :coins, only: :index
+    resources :shops, only: [:index, :show]
 
   end
 
