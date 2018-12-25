@@ -8,4 +8,11 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :nickname, presence: true
+
+  # スコープ
+  scope :search_first_name, -> (q) { where("first_name like ?", "%#{q}%") }
+  scope :search_last_name, -> (q) { where("last_name like ?", "%#{q}%") }
+  scope :search_nickname, -> (q) { where("nickname like ?", "%#{q}%") }
+  scope :search_full_name, -> (q) { where("CONCAT_WS(' ', last_name, first_name) like ?", "%#{q}%") }
+  scope :search_email, -> (q) { where("email like ?", "%#{q}%") }
 end
