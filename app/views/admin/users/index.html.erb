@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>ユーザー一覧</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>苗字</th>
+      <th>名前</th>
+      <th>ニックネーム</th>
+      <th>メールアドレス</th>
+      <th>作成日時</th>
+      <th>更新日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.nickname %></td>
+        <td><%= user.email %></td>
+        <td><%= user.format_created_at %></td>
+        <td><%= user.format_updated_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div>
+  <%= paginate @users, class: "page-link" %>
+</div>
+

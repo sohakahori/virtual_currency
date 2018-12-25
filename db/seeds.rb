@@ -33,6 +33,10 @@ CoinShop.create!(shop: shop2, coin: Coin.third)
   Admin.create(first_name: "first_name#{i}", last_name: "last_name#{i}", email: "test_email#{i}@test.com", password: "testtest")
 end
 
+(1..40).each do |i|
+  User.create(first_name: "first_name#{i}", last_name: "last_name#{i}", nickname: "nickname#{i}", email: "test_email#{i}@test.com", password: "testtest")
+end
+
 
 
 
