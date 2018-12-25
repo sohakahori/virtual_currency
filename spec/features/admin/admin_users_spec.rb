@@ -13,7 +13,7 @@ RSpec.feature "Admin::Users", type: :feature do
       FactoryBot.create(:user, first_name: "first_name#{i}")
     end
   end
-  describe "ユーザー一覧", forcus: true do
+  describe "ユーザー一覧" do
     it "ユーザー一覧が表示される(ページネーション含む)" do
       visit admin_coins_path
       click_on "ユーザー一覧"
@@ -70,6 +70,18 @@ RSpec.feature "Admin::Users", type: :feature do
         click_on "検索"
         expect(page).to have_content user.first_name
         expect(page).to have_content user.last_name
+      end
+    end
+  end
+
+  describe "ユーザー削除" do
+    context "正常系" do
+      it "ユーザーを削除できる" do
+        visit admin_coins_path
+        click_on "ユーザー一覧"
+        click_on "user_#{user.id}"
+        expect(user.reload.deleted_at).not_to be nil
+        expect(page).to have_content "ユーザーを削除しました"
       end
     end
   end
