@@ -41,4 +41,20 @@ RSpec.feature "Public::Shops", type: :feature do
       expect(page).to have_content "取引所名31"
     end
   end
+
+
+  describe "詳細" do
+    it "取引所詳細が表示される" do
+      visit public_coins_path
+      click_on "取引所"
+      click_on "shop_#{shop1.id}"
+      expect(page).to have_content "取引所詳細"
+      expect(page).to have_content shop1.name
+      expect(page).to have_content shop1.address
+      expect(page).to have_content shop1.company
+      shop1.coins.each do |coin|
+        expect(page).to have_content coin.name
+      end
+    end
+  end
 end
