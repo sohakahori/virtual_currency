@@ -8,7 +8,8 @@ class User < ApplicationRecord
   acts_as_paranoid
 
   # アソシエーション
-  has_many :boards, :dependent => :destroy
+  has_many :boards, dependent: :destroy
+  has_many :responses, dependent: :destroy
 
 
   # バリデーション

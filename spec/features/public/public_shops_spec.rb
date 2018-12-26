@@ -81,7 +81,6 @@ RSpec.feature "Public::Shops", type: :feature do
     end
   end
 
-
   describe "詳細" do
     it "取引所詳細が表示される" do
       visit public_coins_path
