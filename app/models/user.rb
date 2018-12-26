@@ -7,6 +7,9 @@ class User < ApplicationRecord
   # 論理削除
   acts_as_paranoid
 
+  # アソシエーション
+  has_many :boards, :dependent => :destroy
+
 
   # バリデーション
   validates :first_name, presence: true
