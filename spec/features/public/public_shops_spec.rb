@@ -7,7 +7,7 @@ RSpec.feature "Public::Shops", type: :feature do
   let!(:coin3) { FactoryBot.create(:coin, name: "イーサリアム", rank: 3) }
 
   let!(:shop1) { FactoryBot.create(:shop, name: "ビットフライヤー", address: "東京都渋谷区", company: "株式会社ビットフライヤー") }
-  let!(:shop2) { FactoryBot.create(:shop, name: "コインチェック", address: "東京都港区0", company: "株式会社コインチェック") }
+  let!(:shop2) { FactoryBot.create(:shop, name: "コインチェック", address: "東京都港区", company: "株式会社コインチェック") }
   let!(:shop3) { FactoryBot.create(:shop, name: "ザイフ", address: "東京都中央区", company: "株式会社ザイフ") }
 
   before do
@@ -39,6 +39,45 @@ RSpec.feature "Public::Shops", type: :feature do
       click_on "2"
       expect(page).not_to have_content "取引所名30"
       expect(page).to have_content "取引所名31"
+    end
+
+    context "検索" do
+      it "検索結果が表示されること(name)" do
+        visit public_coins_path
+        click_on "取引所"
+        fill_in "q", with: shop1.name
+        click_on "検索"
+        expect(page).to have_content shop1.name
+        expect(page).not_to have_content shop2.name
+      end
+
+      it "検索結果が表示されること(address)" do
+        visit public_coins_path
+        click_on "取引所"
+        fill_in "q", with: shop1.address
+        click_on "検索"
+        expect(page).to have_content shop1.address
+        expect(page).not_to have_content shop2.address
+      end
+
+      it "検索結果が表示されること(company)" do
+        visit public_coins_path
+        click_on "取引所"
+        fill_in "q", with: shop1.company
+        click_on "検索"
+        expect(page).to have_content shop1.company
+        expect(page).not_to have_content shop2.company
+      end
+
+      it "検索結果が表示されること(coin_ids)" do
+        visit public_coins_path
+        click_on "取引所"
+        check "coin_#{coin3.id}"
+        click_on "検索"
+        expect(page).to have_content shop1.company
+        expect(page).not_to have_content shop2.company
+        expect(page).not_to have_content shop3.company
+      end
     end
   end
 
