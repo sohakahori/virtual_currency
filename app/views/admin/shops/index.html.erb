@@ -10,7 +10,7 @@
 
     <div>
       <% @coins.each.with_index(1) do |coin, i| %>
-        <%= get_coin_check_box_tag(coin.id) %>
+        <%= get_coin_check_box_tag(coin, @coin_ids) %>
         <%= label_tag :coin_name, coin.name %>
         <% if i % 6 == 0 %>
           <br>
