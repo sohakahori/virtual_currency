@@ -3,6 +3,7 @@ class Public::BoardsController < Public::ApplicationController
   before_action :authenticate_user!
 
   def index
+    @boards = Board.page(params[:page]).per(PER_PAGE)
   end
 
   def new
@@ -15,7 +16,7 @@ class Public::BoardsController < Public::ApplicationController
     @board.responses[0].user = current_user
     if @board.save
       flash[:success] = "スレッドを作成しました"
-      redirect_to new_public_board_path
+      redirect_to public_boards_path
     else
       flash.now[:danger] = "不正な入力値です"
       render :new

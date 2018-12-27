@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>スレッド一覧</h1>
+</div>
+<div>
+  <%= link_to "スレッド作成", new_public_board_path %>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>スレッド名</th>
+      <th>作成日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @boards.each do |board| %>
+      <tr>
+        <td><%= board.id %></td>
+        <td>
+          <%= link_to board.title, public_coins_path %> <!--Todo: pathは仮で指定-->
+        </td>
+        <td><%= board.format_created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div>
+  <%= paginate @boards %>
+</div>
+
