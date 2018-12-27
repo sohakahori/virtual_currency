@@ -30,4 +30,46 @@ RSpec.feature "Public::Boards", type: :feature do
       end
     end
   end
+
+  describe "スレッド作成", forcus: true do
+    context "認証済み・正常系" do
+      before do
+        sign_in user
+      end
+      it "スレッドを登録できる" do
+        visit public_coins_path
+        click_on "スレッド"
+        click_on "スレッド作成"
+        expect(page).to have_content "スレッド作成"
+        before_response_count = Response.count
+        expect {
+          fill_in "board[title]", with: "新スレッド"
+          fill_in "board[responses_attributes][0][body]", with: "コメント"
+          click_on "登録する"
+        }.to change(Board, :count).by(1)
+        expect(Response.count).to eq (before_response_count + 1)
+        expect(page).to have_content "スレッドを作成しました"
+      end
+    end
+
+    context "認証済み・異常系" do
+      before do
+        sign_in user
+      end
+      it "バリデーションが適用される" do
+        visit public_coins_path
+        click_on "スレッド"
+        click_on "スレッド作成"
+        expect(page).to have_content "スレッド作成"
+        before_response_count = Response.count
+        expect {
+          fill_in "board[title]", with: nil
+          fill_in "board[responses_attributes][0][body]", with: nil
+          click_on "登録する"
+        }.to change(Board, :count).by(0)
+        expect(Response.count).to eq before_response_count
+        expect(page).to have_content "不正な入力値です"
+      end
+    end
+  end
 end
