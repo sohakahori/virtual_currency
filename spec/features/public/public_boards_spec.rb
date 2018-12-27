@@ -12,7 +12,7 @@ RSpec.feature "Public::Boards", type: :feature do
     end
   end
 
-  describe "スレッド一覧", forcus: true do
+  describe "スレッド一覧" do
     context "認証済み" do
       before do
         sign_in user
@@ -31,7 +31,7 @@ RSpec.feature "Public::Boards", type: :feature do
     end
   end
 
-  describe "スレッド作成", forcus: true do
+  describe "スレッド作成" do
     context "認証済み・正常系" do
       before do
         sign_in user
