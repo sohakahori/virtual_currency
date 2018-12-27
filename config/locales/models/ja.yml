@@ -5,6 +5,8 @@ ja:
       admin: 管理者
       shop: 取引所
       user: ユーザー
+      board: スレッド
+      response: レスポンス
     attributes:
       coin:
         name: コイン名
@@ -28,6 +30,10 @@ ja:
         first_name: 名前
         last_name: 苗字
         nickname: ニックネーム
+      board:
+        title: スレッド名
+      board/responses:
+        body: コメント
   errors:
     messages:
       not_saved: 管理者を登録できませんでした

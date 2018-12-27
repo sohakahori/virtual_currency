@@ -1,0 +1,41 @@
+<%= form_for [:public, @board], :html => { :class => "form-horizontal board" } do |f| %>
+
+  <% if @board.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@board.errors.count, "error") %> prohibited this board from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @board.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
+
+  </div>
+  <div class="form-group">
+    <%= f.fields_for :responses do |ff| %>
+      <%= ff.label :body, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= ff.text_area :body, :class => 'form-control' %>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+  </div>
+
+<% end %>
