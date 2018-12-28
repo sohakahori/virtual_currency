@@ -31,6 +31,31 @@ RSpec.feature "Public::Boards", type: :feature do
     end
   end
 
+  describe "スレッド一覧(検索)" do
+    let(:search_board) { FactoryBot.create(:board, title: "検索スレッド") }
+    let(:search_responses) { FactoryBot.create(:response, body: "検索レスポンス", board: search_board) }
+    context "認証済み" do
+      before do
+        sign_in user
+      end
+      it "検索したスレッド一覧が表示される(title)" do
+        visit public_coins_path
+        click_on "スレッド"
+        fill_in "q", with: search_board.title
+        click_on "検索"
+        expect(page).to have_content search_board.title
+      end
+
+      it "検索したスレッド一覧が表示される(body)" do
+        visit public_coins_path
+        click_on "スレッド"
+        fill_in "q", with: search_responses.body
+        click_on "検索"
+        expect(page).to have_content search_board.title
+      end
+    end
+  end
+
   describe "スレッド作成" do
     context "認証済み・正常系" do
       before do
