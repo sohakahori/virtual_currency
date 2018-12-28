@@ -34,6 +34,8 @@ ja:
         title: スレッド名
       board/responses:
         body: コメント
+      response:
+        body: コメント
   errors:
     messages:
       not_saved: 管理者を登録できませんでした
