@@ -9,4 +9,7 @@ class Board < ApplicationRecord
   validates :title, presence: true,
             length: { maximum: 20 }
 
+  # スコープ
+  scope :search_title, -> (q) { where("title like ?", "%#{q}%") }
+
 end

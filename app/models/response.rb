@@ -4,4 +4,7 @@ class Response < ApplicationRecord
 
   validates :body, presence: true,
             length: { maximum: 50 }
+
+  # スコープ
+  scope :search_body, -> (q) { where("body like ?", "%#{q}%") }
 end

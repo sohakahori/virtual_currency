@@ -3,7 +3,13 @@ class Public::BoardsController < Public::ApplicationController
   before_action :authenticate_user!
 
   def index
-    @boards = Board.page(params[:page]).per(PER_PAGE)
+    @q      = params[:q]
+    @boards = Board.includes(:responses)
+    if @q.present?
+      @boards = @boards.references(:responses)
+      @boards = @boards.search_title(@q).or(@boards.merge(Response.search_body(@q)))
+    end
+    @boards = @boards.page(params[:page]).per(PER_PAGE)
   end
 
   def new
