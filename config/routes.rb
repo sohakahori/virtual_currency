@@ -20,7 +20,12 @@ Rails.application.routes.draw do
   namespace :public do
     resources :coins, only: :index
     resources :shops, only: [:index, :show]
-    resources :boards, only: [:index, :new, :create]
+    resources :boards, only: [:index, :new, :create] do
+      resources :responses, only: [:index, :new, :create]
+      collection do
+        resources :responses, only: [:destroy]
+      end
+    end
   end
 
   scope module: :user do

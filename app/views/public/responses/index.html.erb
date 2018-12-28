@@ -1,0 +1,22 @@
+<%- model_class = Response -%>
+<div class="page-header">
+  <h1>レスポンス内容</h1>
+  <h2><%= @board.title %></h2>
+</div>
+<% @responses.each do |response| %>
+<div class="box30">
+  <div class="box-title">
+    <div>
+      <%= response.user.nickname %>
+      <%= response.format_created_at %>
+    </div>
+  </div>
+  <p><%= response.body %></p>
+  <% if current_user == response.user %>
+    <p><%= link_to "削除", public_response_path(response), method: :delete, data: {confirm: "削除してよろしいですか？"} %></p>
+  <% end %>
+</div>
+<% end %>
+<div>
+  <%= paginate @responses %>
+</div>
