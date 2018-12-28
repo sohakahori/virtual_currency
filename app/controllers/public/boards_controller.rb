@@ -4,9 +4,9 @@ class Public::BoardsController < Public::ApplicationController
 
   def index
     @q      = params[:q]
-    @boards = Board.includes(:responses)
+    @boards = Board
     if @q.present?
-      @boards = @boards.references(:responses)
+      @boards = @boards.includes(:responses).references(:responses)
       @boards = @boards.search_title(@q).or(@boards.merge(Response.search_body(@q)))
     end
     @boards = @boards.page(params[:page]).per(PER_PAGE)
