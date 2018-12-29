@@ -25,7 +25,7 @@ class Public::ResponsesController < Public::ApplicationController
     end
   end
 
-  # Todo: /public/boards/:board_id/responses/id　のuriにする必要あり(エラーハンドリングを考慮した際)
+  # Todo: /public/boards/:board_id/responses/id　のuriにする必要あり(エラーハンドリングを考慮した際)(一旦保留)
   def destroy
     begin
       response = Response.find(params[:id])
