@@ -25,6 +25,7 @@ class Public::ResponsesController < Public::ApplicationController
     end
   end
 
+  # Todo: /public/boards/:board_id/responses/id　のuriにする必要あり(エラーハンドリングを考慮した際)
   def destroy
     begin
       response = Response.find(params[:id])
@@ -32,10 +33,10 @@ class Public::ResponsesController < Public::ApplicationController
     rescue => e
       flash[:danger] = "コメントを削除できませんでした"
       logger.error(e.message)
-      redirect_back(fallback_location: public_response_path(response.board)) and return
+      redirect_back(fallback_location: public_board_responses_path(response.board)) and return
     end
     flash[:success] = "コメントを削除しました"
-    redirect_back(fallback_location: public_response_path(response.board)) and return
+    redirect_back(fallback_location: public_board_responses_path(response.board)) and return
   end
 
   private
