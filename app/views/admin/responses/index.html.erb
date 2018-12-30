@@ -38,7 +38,7 @@
         <td><%= simple_format(response.body) %></td>
         <td><%= response.user.full_name %></td>
         <td><%= response.format_created_at %></td>
-        <td></td>
+        <td><%= link_to "詳細", admin_board_response_path(@board, response), class: "btn btn-info", id: "show_response#{response.id}" %></td>
         <td></td>
       </tr>
     <% end %>

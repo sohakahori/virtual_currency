@@ -8,6 +8,10 @@ class Admin::ResponsesController < Admin::ApplicationController
     @responses = @responses.page(params[:page]).per(PER_PAGE)
   end
 
+  def show
+    @response = Response.find(params[:id])
+  end
+
   def get_board
     @board = Board.find(params[:board_id])
   end

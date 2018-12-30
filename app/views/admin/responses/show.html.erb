@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h1>コメント詳細</h1>
+  <h2><%= @board.title %></h2>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>ID:</strong></dt>
+  <dd><%= @response.id %></dd>
+  <dt><strong>投稿者ID(user_id):</strong></dt>
+  <dd><%= @response.board_id %></dd>
+  <dt><strong>投稿者名:</strong></dt>
+  <dd><%= @response.user.full_name %></dd>
+  <dt><strong>コメント:</strong></dt>
+  <dd><%= simple_format(@response.body) %></dd>
+</dl>
