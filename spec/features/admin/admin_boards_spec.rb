@@ -32,7 +32,7 @@ RSpec.feature "Admin::Boards", type: :feature do
         expect(page).to have_content "create スレッド31"
       end
 
-      scenario "検索されたスレッド一覧が表示される(title)", forcus: true do
+      scenario "検索されたスレッド一覧が表示される(title)" do
         visit admin_coins_path
         click_on "スレッド一覧"
         fill_in "q", with: search_title_board1.title
@@ -40,7 +40,7 @@ RSpec.feature "Admin::Boards", type: :feature do
         expect(page).to have_content search_title_board1.title
       end
 
-      scenario "検索されたスレッド一覧が表示される(title複数)", forcus: true do
+      scenario "検索されたスレッド一覧が表示される(title複数)" do
         visit admin_coins_path
         click_on "スレッド一覧"
         fill_in "q", with: "#{search_title_board1.title} #{search_title_board2}"
@@ -80,7 +80,7 @@ RSpec.feature "Admin::Boards", type: :feature do
     end
   end
 
-  feature "スレッド削除", forcus: true do
+  feature "スレッド削除" do
     context "認証済み" do
       let!(:board) { FactoryBot.create(:board, title: "rspecスレッド") }
       let!(:delete_board) { FactoryBot.create(:board, title: "削除用スレッド") }

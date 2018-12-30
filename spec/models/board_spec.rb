@@ -15,7 +15,7 @@ RSpec.describe Board, type: :model do
     end
   end
 
-  context "バリデーション未適用", forcus: true do
+  context "バリデーション未適用" do
     it "正常な値が入力された時はバリデーションが適用されないこと" do
       board = FactoryBot.build(:board, title: ("a" * 20))
       board.valid?
