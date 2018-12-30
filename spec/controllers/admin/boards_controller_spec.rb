@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Admin::BoardsController, type: :controller do
 
   let(:admin) { FactoryBot.create(:admin) }
-  describe "GET #index", forcus: true do
+  describe "GET #index" do
     context "認証済み" do
       before do
         sign_in admin
@@ -39,7 +39,7 @@ RSpec.describe Admin::BoardsController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy", forcus: true do
+  describe "DELETE #destroy" do
     let!(:board) { FactoryBot.create(:board) }
     context "認証済み" do
       before do
