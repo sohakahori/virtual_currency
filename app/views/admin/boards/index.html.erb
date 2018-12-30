@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h1>スレッド一覧</h1>
+</div>
+<div>
+  <%= form_tag admin_boards_path, method: :get do %>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <%= text_field_tag :q, @q, class: 'form-control', placeholder: "スレッド・コメント" %>
+      </div>
+    </div>
+    <%= submit_tag "検索", class: 'btn btn-primary' %>
+  <% end %>
+</div>
+<br><br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>スレッド名</th>
+      <th>スレッド作成者</th>
+      <th>作成日時</th>
+      <th>コメント一覧</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @boards.each do |board| %>
+      <tr>
+        <td><%= board.id %></td>
+        <td><%= board.title %></td>
+        <td><%= board.user.full_name %></td>
+        <td><%= board.created_at %></td>
+        <td><%= link_to "コメント一覧", "localhost:3000", class: "btn btn-info" %></td>
+        <td>
+          <%= link_to "削除", admin_board_path(board), method: :delete,
+                        class: "btn btn-danger", id: "board_#{board.id}",
+                        data: {confirm: "本当に削除しますか？\n※コメントも削除されます"} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div>
+  <%= paginate @boards %>
+</div>
