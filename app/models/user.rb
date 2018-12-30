@@ -22,5 +22,7 @@ class User < ApplicationRecord
   scope :search_last_name, -> (q) { where("last_name like ?", "%#{q}%") }
   scope :search_nickname, -> (q) { where("nickname like ?", "%#{q}%") }
   scope :search_full_name, -> (q) { where("CONCAT_WS(' ', last_name, first_name) like ?", "%#{q}%") }
+  scope :search_no_space_full_name, -> (q) { where("CONCAT(last_name, first_name) like ?", "%#{q}%") }
   scope :search_email, -> (q) { where("email like ?", "%#{q}%") }
+  scope :search_id, -> (q) { where(id: q) }
 end

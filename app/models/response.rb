@@ -7,4 +7,5 @@ class Response < ApplicationRecord
 
   # スコープ
   scope :search_body, -> (q) { where("body like ?", "%#{q}%") }
+  scope :search_id, -> (q) { where(id: q) }
 end

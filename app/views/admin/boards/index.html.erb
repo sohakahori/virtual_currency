@@ -30,7 +30,7 @@
         <td><%= board.title %></td>
         <td><%= board.user.full_name %></td>
         <td><%= board.created_at %></td>
-        <td><%= link_to "コメント一覧", "localhost:3000", class: "btn btn-info" %></td>
+        <td><%= link_to "コメント一覧", admin_board_responses_path(board), class: "btn btn-info", id: "board_responses_#{board.id}" %></td>
         <td>
           <%= link_to "削除", admin_board_path(board), method: :delete,
                         class: "btn btn-danger", id: "board_#{board.id}",
