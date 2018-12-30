@@ -13,3 +13,6 @@
   <dt><strong>コメント:</strong></dt>
   <dd><%= simple_format(@response.body) %></dd>
 </dl>
+<div>
+  <%= link_to "削除", admin_board_response_path(@board, @response), id: "delete_response#{@response.id}", class: "btn btn-danger", method: :delete, data: {confirm: "削除してよろしいですか？"} %>
+</div>
