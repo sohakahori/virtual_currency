@@ -212,7 +212,7 @@ RSpec.feature "Admin::Responses", type: :feature do
       end
     end
 
-    feature "コメント削除", forcus: true do
+    feature "コメント削除" do
       context "認証済み" do
         before do
           sign_in admin
