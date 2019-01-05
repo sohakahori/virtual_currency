@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # devise_for :admins
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #
 
   scope module: 'admin' do
     devise_for :admins, controllers: {
@@ -22,6 +23,8 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
+    root to: 'coins#index'
+
     resources :coins, only: :index
     resources :shops, only: [:index, :show]
     resources :boards, only: [:index, :new, :create] do
