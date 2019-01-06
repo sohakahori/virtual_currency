@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: virtual_currency_production
-  username: virtual_currency
+  username: <%= ENV['VIRTUAL_CURRENCY_DATABASE_USER'] %>
   password: <%= ENV['VIRTUAL_CURRENCY_DATABASE_PASSWORD'] %>
+  host: <%= ENV['VIRTUAL_CURRENCY_DATABASE_HOST'] %>
