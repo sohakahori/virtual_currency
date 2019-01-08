@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>コメント投稿一覧</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>スレッド名</th>
+    <th>コメント</th>
+    <th>
+      作成日時&nbsp;
+      <%= link_to("↑", public_user_responses_path(created_at: "asc")) %>&nbsp;
+      <%= link_to("↓", public_user_responses_path(created_at: "desc")) %>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @responses.each do |response| %>
+    <tr>
+      <td><%= response.id %></td>
+      <td><%= response.board.title %></td>
+      <td><%= simple_format response.body %></td>
+      <td>
+        <%= response.format_created_at %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= paginate @responses %>

@@ -8,4 +8,5 @@ class Response < ApplicationRecord
   # スコープ
   scope :search_body, -> (q) { where("body like ?", "%#{q}%") }
   scope :search_id, -> (q) { where(id: q) }
+  scope :order_created_at, -> (q) { order(created_at: "#{q}") }
 end
