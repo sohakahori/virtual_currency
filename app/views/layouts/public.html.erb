@@ -55,6 +55,9 @@
               <li><%= link_to "コメント投稿一覧", public_user_responses_path  %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             <% end %>
+            <% if current_user.blank? %>
+              <li><%= link_to "ログイン", new_user_session_path %></li>
+            <% end %>
           </ul>
         </div>
       </div>
