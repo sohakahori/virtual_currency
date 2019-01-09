@@ -23,6 +23,16 @@ Things you may want to cover:
 
 * ...
 
+## デザインパターン導入
+* serviceクラス
+`https://qiita.com/chrischris0801/items/58a12d17a440b842db02`
+
+    ※随時適応
+    
+    ↓↓ 導入検討
+`https://qiita.com/QUANON/items/5ef803988c0ad6930e4b`  
+    
+
 ## 自作rakeコマンド
 * coinsマスターデータをインサート
 
