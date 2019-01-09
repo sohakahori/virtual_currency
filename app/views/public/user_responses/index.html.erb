@@ -12,6 +12,7 @@
       <%= link_to("↑", public_user_responses_path(created_at: "asc")) %>&nbsp;
       <%= link_to("↓", public_user_responses_path(created_at: "desc")) %>
     </th>
+    <th>削除</th>
   </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@
       <td>
         <%= response.format_created_at %>
       </td>
+      <td><%= link_to "削除", public_user_response_path(response), method: :delete, data: {confirm: "削除してよろしいですか？"}%></td>
     </tr>
   <% end %>
   </tbody>
