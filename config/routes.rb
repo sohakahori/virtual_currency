@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
     resources :coins, only: :index
     resources :shops, only: [:index, :show]
-    resources :user_responses, only: [:index, :delete]
+    resources :user_responses, only: [:index, :destroy]
     resources :boards, only: [:index, :new, :create] do
       resources :responses, only: [:index, :new, :create]
       collection do
