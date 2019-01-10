@@ -3,14 +3,7 @@ class Admin::AdminsController < Admin::ApplicationController
 
   def index
     @q = params[:q]
-    @admins = Admin
-    if @q.present?
-      @admins = @admins.search_first_name(@q).
-          or(@admins.search_last_name(@q)).
-          or(@admins.search_email(@q)).
-          or(@admins.search_full_name(@q))
-    end
-    @admins = @admins.order_updated_at.page(params[:page]).per(PER_PAGE)
+    @admins = GetAdminsService.new(params).call
   end
 
   def new
