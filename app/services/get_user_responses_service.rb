@@ -14,7 +14,7 @@ class GetUserResponsesService
     responses = user.responses.includes(:board)
 
     if params[:q].present?
-      responses = responses.references(:board).merge(Board.perfect_match_title(params[:q]))
+      responses = responses.references(:board).merge(Board.search_title(params[:q]))
     end
 
     if params[:created_at].present?
