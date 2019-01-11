@@ -3,18 +3,11 @@ class Admin::ShopsController < Admin::ApplicationController
   before_action :get_shop, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = params[:q]
+    @params = params
     @coin_ids = params[:coin_ids].present? ? params[:coin_ids] : []
-
-    @shops = Shop.eager_load(:coin_shops).eager_load(:coins)
-    if @q.present?
-      @shops = @shops.search_name(@q).or(@shops.search_address(@q)).or(@shops.search_company(@q))
-    end
-    if @coin_ids.present?
-      @shops = @shops.merge(Coin.coin_ids(@coin_ids))
-    end
-    @coins = Coin.all
-    @shops = @shops.page(params[:page]).per(PER_PAGE)
+    get_slhops_service = GetShopsService.new(@params, @coin_ids)
+    @shops             = get_slhops_service.call
+    @coins             = Coin.all
   end
 
   def new
