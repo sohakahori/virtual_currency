@@ -3,7 +3,7 @@
   <%= form_tag admin_users_path, method: :get do %>
     <div class="form-group">
       <div class="col-lg-10">
-        <%= text_field_tag :q, @q, class: 'form-control', placeholder: "苗字・名前・苗字 名前・ニックネーム・メールアドレス" %>
+        <%= text_field_tag :q, @params[:q], class: 'form-control', placeholder: "苗字・名前・苗字 名前・ニックネーム・メールアドレス" %>
       </div>
     </div>
     <%= submit_tag "検索", class: 'btn btn-primary' %>
