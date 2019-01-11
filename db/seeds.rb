@@ -6,13 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# FIXME: rake db:coins_createコマンドが無限ループしてしまう
-# マスタデータ(API経由でダータをインサート)
-# require 'rake'
-# Rails.application.load_tasks
-# Rake::Task['db:coins_create'].execute
-# Rake::Task['db:coins_create'].clear
-
+begin
+  CreateAndUpdateCoinsService.new.create
+rescue => e
+  puts e.message
+end
 
 
 shop1 = Shop.create!(name: "コインチェック", address: "東京都渋谷区神泉2-18-9", company: "株式会社コインチェック")
