@@ -136,7 +136,7 @@ RSpec.feature "Admin::Responses", type: :feature do
         click_on "board_responses_#{board.id}"
         expect(page).to have_content "コメント一覧"
         expect(page).to have_content response.body
-        fill_in "q[user]", with: "#{search_user_response1.user.last_name}#{search_user_response1.user.first_name}"
+        fill_in "q[user]", with: "#{search_user_response1.user.last_name} #{search_user_response1.user.first_name}"
         click_on "検索"
         expect(page).to have_content search_user_response1.body
         expect(page).not_to have_content response.body
@@ -150,7 +150,7 @@ RSpec.feature "Admin::Responses", type: :feature do
         expect(page).to have_content "コメント一覧"
         expect(page).to have_content response.body
         fill_in "q[user]",
-                with: "#{search_user_response1.user.last_name}#{search_user_response1.user.first_name} #{search_user_response2.user.last_name}#{search_user_response2.user.first_name}"
+                with: "#{search_user_response1.user.last_name} #{search_user_response1.user.first_name} #{search_user_response2.user.last_name} #{search_user_response2.user.first_name}"
         click_on "検索"
         expect(page).to have_content search_user_response1.body
         expect(page).to have_content search_user_response2.body
