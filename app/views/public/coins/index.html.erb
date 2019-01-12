@@ -7,6 +7,7 @@
     <th>ID</th>
     <th>コイン名</th>
     <th>コイン名(省略名)</th>
+    <th>価格</th>
     <th>時価総額</th>
     <th>更新日時</th>
   </tr>
@@ -17,6 +18,7 @@
       <td><%= coin.id %></td>
       <td><%= coin.name %></td>
       <td><%= coin.symbol %></td>
+      <td><%= coin.format_price %></td>
       <td><%= coin.format_market_cap_jpy %></td>
       <td><%= coin.format_updated_at %></td>
     </tr>

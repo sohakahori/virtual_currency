@@ -8,6 +8,7 @@ class CreateAndUpdateCoinsService
           coin_market_cap_id: coin["id"],
           symbol: coin["symbol"],
           rank: coin["rank"],
+          price: coin["price_jpy"],
           market_cap_jpy: coin["market_cap_jpy"]
       )
     end
@@ -23,12 +24,13 @@ class CreateAndUpdateCoinsService
           coin.name = api_coin["name"]
           coin.symbol = api_coin["symbol"]
           coin.rank = api_coin["rank"]
+          coin.price = api_coin["price_jpy"]
           coin.market_cap_jpy = api_coin["market_cap_jpy"]
           update_coins << coin
         end
       end
     end
-    Coin.import update_coins, on_duplicate_key_update:[:name, :symbol, :rank, :market_cap_jpy]
+    Coin.import update_coins, on_duplicate_key_update:[:name, :symbol, :rank, :price, :market_cap_jpy]
   end
 
   private
