@@ -1,7 +1,7 @@
 class Admin::BoardsController < Admin::ApplicationController
   def index
     @q = params[:q]
-    @boards = GetBoardsService.new(params).call
+    @boards = GetBoardsService.new(params).call.includes(:user)
   end
 
   def destroy

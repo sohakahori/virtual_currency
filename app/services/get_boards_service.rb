@@ -11,25 +11,23 @@ class GetBoardsService
   attr_reader :params
 
   def get_boards
-    boards = Board.includes(:user)
+    boards = Board
     if params[:q].present?
       boards = boards.includes(:responses).references(:responses)
       boards = search_process boards
     end
-    boards.page(params[:page]).per(Admin::ApplicationController::PER_PAGE)
+    boards.page(params[:page]).per(ApplicationController::PER_PAGE)
   end
 
  def search_process boards
-   search_boards = params[:q].split(" ").map do |q|
-     boards.search_title(q).or(boards.merge(Response.search_body(q)))
-   end
-   search_boards.each_with_index do |search_board, i|
+   result_boards = nil
+   params[:q].split(/[[:blank:]]+/).each_with_index do |word, i|
      if i == 0
-       boards = search_board
+       result_boards = boards.search_title(word).or(boards.merge(Response.search_body(word)))
      else
-       boards = boards.or(search_board)
+       result_boards = result_boards.or(boards.search_title(word).or(boards.merge(Response.search_body(word))))
      end
    end
-   boards
+   result_boards
  end
 end
