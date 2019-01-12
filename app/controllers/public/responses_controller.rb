@@ -2,11 +2,7 @@ class Public::ResponsesController < Public::ApplicationController
   before_action :authenticate_user!
   before_action :get_board, only: [:index, :new, :create]
   def index
-    @responses = @board
-                   .responses
-                   .includes(:user)
-                   .page(params[:page])
-                   .per(RESPONSE_PER_PAGE)
+    @responses = GetResponsesByBordService.new(params, @board, Public::ApplicationController::RESPONSE_PER_PAGE).call
   end
 
   def new

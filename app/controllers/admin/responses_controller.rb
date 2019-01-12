@@ -4,7 +4,7 @@ class Admin::ResponsesController < Admin::ApplicationController
 
   def index
     @params = params
-    @responses = GetResponsesByBordService.new(params, @board).call
+    @responses = GetResponsesByBordService.new(params, @board, Admin::ApplicationController::PER_PAGE).call
   end
 
   def show

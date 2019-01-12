@@ -1,7 +1,8 @@
 class GetResponsesByBordService
-  def initialize params, board
-    @params = params
-    @board  = board
+  def initialize params, board, per_page
+    @params   = params
+    @board    = board
+    @per_page = per_page
   end
 
   def call
@@ -9,12 +10,12 @@ class GetResponsesByBordService
   end
 
   private
-  attr_reader :params, :board
+  attr_reader :params, :board, :per_page
 
   def get_response_by_bord
     responses = board.responses.includes(:user)
     responses = search_process responses
-    responses.page(params[:page]).per(Admin::ApplicationController::PER_PAGE)
+    responses.page(params[:page]).per(per_page)
   end
 
   def search_process responses
