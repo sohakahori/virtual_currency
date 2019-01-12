@@ -4,7 +4,7 @@
 <div>
   <%= form_tag public_shops_path, method: :get do %>
     <div>
-      <%= text_field_tag :q, @q, placeholder: "取引所名・住所・会社名", class: "form-control" %><br>
+      <%= text_field_tag :q, @params[:q], placeholder: "取引所名・住所・会社名", class: "form-control" %><br>
     </div>
     <div>
       <% @coins.each.with_index(1) do |coin, i| %>
