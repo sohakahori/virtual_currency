@@ -43,5 +43,15 @@ Rails.application.routes.draw do
       passwords: 'public/users/passwords'
     }
   end
+
+
+  # API
+  namespace :api do
+    namespace :v1 do
+      resources :coins, only: :index
+    end
+  end
 end
+
+
 
