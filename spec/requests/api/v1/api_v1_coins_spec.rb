@@ -2,8 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "Api::V1::Coins", type: :request do
 
+    # CreateAndUpdateCoinsService.new.create
   before do
-    CreateAndUpdateCoinsService.new.create
+    (1..10).each do
+      FactoryBot.create(:coin)
+    end
   end
 
   describe "GET /coins" do
@@ -12,7 +15,7 @@ RSpec.describe "Api::V1::Coins", type: :request do
       expect(response).to have_http_status(200)
     end
 
-    it "100件のレコードをレスポンスする" do
+    it "全レコードをレスポンスする" do
       get api_v1_coins_path
       json = JSON.parse(response.body)
       expect(Coin.count).to eq json["coins"].count

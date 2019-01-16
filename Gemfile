@@ -65,12 +65,12 @@ gem 'whenever'
 gem 'paranoia'
 
 
+gem 'jbuilder_pagination', require: 'jbuilder/pagination'
 
-group :development, :production do
-  # apiドキュメント
-  gem 'apipie-rails'
-  gem 'maruku'
-end
+
+# apiドキュメント
+gem 'apipie-rails'
+gem 'maruku'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
