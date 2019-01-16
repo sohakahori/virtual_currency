@@ -38,4 +38,4 @@ ja:
         body: コメント
   errors:
     messages:
-      not_saved: 管理者を登録できませんでした
+      not_saved: 入力項目に不備があります

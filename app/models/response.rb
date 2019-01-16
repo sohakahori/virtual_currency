@@ -3,7 +3,8 @@ class Response < ApplicationRecord
   belongs_to :board
 
   validates :body, presence: true,
-            length: { maximum: 50 }
+            length: { maximum: 50 },
+            black_word: true
 
   # スコープ
   scope :search_body, -> (q) { where("body like ?", "%#{q}%") }
