@@ -64,6 +64,14 @@ gem 'whenever'
 # 論理削除
 gem 'paranoia'
 
+
+
+group :development, :production do
+  # apiドキュメント
+  gem 'apipie-rails'
+  gem 'maruku'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
   gem "factory_bot_rails", "~> 4.10.0"
