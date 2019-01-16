@@ -1,1 +1,5 @@
-json.message message
+json.set! :error do
+  json.code code
+  json.message message
+end
+

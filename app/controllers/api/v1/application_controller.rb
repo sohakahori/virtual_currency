@@ -1,7 +1,11 @@
 class Api::V1::ApplicationController < ApplicationController
   # protect_from_forgery with: :exception
 
-  def errors code, message
-    render 'api/v1/base/error', formats: 'json', handlers: 'jbuilder', status: code, locals: { message: message }
+  def get_query_string_to_hash
+    Rack::Utils.parse_nested_query(URI.parse(request.url).query)
+  end
+
+  def render_error code, message
+    render 'api/v1/base/error', formats: 'json', handlers: 'jbuilder', status: code, locals: { message: message, code: code }
   end
 end
