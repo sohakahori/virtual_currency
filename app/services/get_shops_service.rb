@@ -14,10 +14,9 @@ class GetShopsService
   attr_reader :params, :checked_coin_ids
 
   def get_shops
-    page  = params["page"].present? && params["page"]["number"].present? ? params["page"]["number"] : params[:page]
     shops = Shop.eager_load(:coin_shops).eager_load(:coins)
     shops = shops.search_name(params[:q]).or(shops.search_address(params[:q])).or(shops.search_company(params[:q])) if params[:q].present?
     shops = shops.merge(Coin.coin_ids(checked_coin_ids)) if checked_coin_ids.present?
-    shops.page(page).per(Admin::ApplicationController::PER_PAGE)
+    shops.page(params[:page]).per(Admin::ApplicationController::PER_PAGE)
   end
 end
