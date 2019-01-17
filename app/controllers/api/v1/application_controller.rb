@@ -1,6 +1,10 @@
 class Api::V1::ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
+  include DeviseTokenAuth::Concerns::SetUserByToken
+  include Api::V1::Filter::SetPageNumber
+
+
   def get_query_string_to_hash
     Rack::Utils.parse_nested_query(URI.parse(request.url).query)
   end
