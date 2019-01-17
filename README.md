@@ -23,6 +23,11 @@ Things you may want to cover:
 
 * ...
 
+## 認証
+* devise token auth
+`http://clc.gonna.jp/2017/01/post-1306/`
+`https://qiita.com/DaichiSaito/items/b6239d70ab10b2070bc4`
+
 ## デザインパターン導入
 * serviceクラス
 `https://qiita.com/chrischris0801/items/58a12d17a440b842db02`

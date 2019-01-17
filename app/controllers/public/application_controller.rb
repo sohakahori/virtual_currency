@@ -1,4 +1,4 @@
-class Public::ApplicationController < ApplicationController
+class Public::ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   layout "public"

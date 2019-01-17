@@ -38,6 +38,8 @@ gem 'twitter-bootstrap-rails' # Bootstrapの本体
 gem 'faker'
 
 gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
 
 # gem 'devise-bootstrap-views'
 

@@ -1,5 +1,5 @@
-class Api::V1::ApplicationController < ApplicationController
-  # protect_from_forgery with: :exception
+class Api::V1::ApplicationController < ActionController::Base
+  protect_from_forgery with: :null_session
 
   def get_query_string_to_hash
     Rack::Utils.parse_nested_query(URI.parse(request.url).query)
