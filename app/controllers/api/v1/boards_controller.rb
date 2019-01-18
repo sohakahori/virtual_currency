@@ -64,6 +64,78 @@ class Api::V1::BoardsController < Api::V1::ApplicationController
     render 'index', formats: 'json', handlers: 'jbuilder'
   end
 
+
+
+
+  api :POST, '/boards', 'スレッド一覧を返します'
+  description 'スレッド一覧を返します'
+  formats ['json']
+  error code: 400, description: 'Bad Request'
+  error code: 401, description: 'Unauthorized'
+
+  header 'Content-Type', 'application/json', required: true
+  header 'client', '6_fqbcH7qTO-4tGV81cOjw', required: true
+  header 'access-token', 'dnLIrN5ADN_uAmmZIO1k8g', required: true
+  header 'uid', 'test@test.com'
+  # def_param_group :board do
+  #   param :board, Hash, :action_aware => true, :required => true do
+  #     param :title, String, :required => true
+  #     param :responses_attributes, Array, :action_aware => true, :required => true do
+  #       param :body, String, :required => true
+  #     end
+  #   end
+  # end
+
+  # param_group :board
+
+
+  example <<-EDOC
+  $ curl -X POST -H "Content-Type:application/json" -H "client:6_fqbcH7qTO-4tGV81cOjw" -H "access-token:dnLIrN5ADN_uAmmZIO1k8g" -H "uid:test@test.com"  -d '{"board":{"title":"スレッド名", "responses_attributes":[{"body":"コメント"}]}}'  0.0.0.0/api/v1/board
+
+  ## リクエストボディ
+  {
+    "board" : {
+      "title": "タイトル",
+      "responses_attributes" : [
+         {
+            "body": "コメント"
+         }
+      ]
+    } 
+  }
+
+
+  ## レスポンスボディ
+  {
+    "status": "success",
+    "board": {
+      "title": "タイトル",
+      "user_id": 41,
+      "created_at": "2019-01-18T17:39:06+09:00",
+      "updated_at": "2019-01-18T17:39:06+09:00",
+      "response": {
+        "board_id": 53,
+        "user_id": 41,
+        "body": "コメント",
+        "created_at": "2019-01-18T17:39:06+09:00",
+        "updated_at": "2019-01-18T17:39:06+09:00"
+      }
+    }
+  }
+
+  ## レスポンスボディ(バリデーション時)
+  {
+    "errors": {
+      "status": 400,
+      "message": "Bad Request",
+      "full_messages": [
+        "コメントを入力してください",
+        "スレッド名を入力してください"
+      ]
+    }
+  }
+
+  EDOC
   def create
     render_error Settings.status_code.bad_request, Settings.status_message.bad_request and return  if board_params[:responses_attributes].length != 1
     @board = current_user.boards.build(board_params)
