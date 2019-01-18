@@ -63,4 +63,23 @@ class Api::V1::BoardsController < Api::V1::ApplicationController
     @boards = GetBoardsService.new(params).call
     render 'index', formats: 'json', handlers: 'jbuilder'
   end
+
+  def create
+    render_error Settings.status_code.bad_request, Settings.status_message.bad_request and return  if board_params[:responses_attributes].length != 1
+    @board = current_user.boards.build(board_params)
+    @board.responses[0].user = current_user
+    if @board.save
+      @response = @board.responses.last
+      render 'create', formats: 'json', handlers: 'jbuilder'
+    else
+      render_error Settings.status_code.bad_request, Settings.status_message.bad_request, @board.errors.full_messages
+    end
+  end
+
+
+  private
+  def board_params
+    params.require(:board).permit( :title, responses_attributes:[:body] )
+  end
+
 end

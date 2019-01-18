@@ -74,6 +74,9 @@ gem 'jbuilder_pagination', require: 'jbuilder/pagination'
 gem 'apipie-rails'
 gem 'maruku'
 
+# config
+gem 'config'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
   gem "factory_bot_rails", "~> 4.10.0"
