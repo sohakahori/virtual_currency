@@ -56,7 +56,7 @@ Rails.application.routes.draw do
       resources :coins, only: :index
       resources :shops, only: [:index, :show]
       resources :boards, only: [:index, :create] do
-        resources :responses, only: [:index, :create]
+        resources :responses, only: [:index, :create, :destroy]
       end
     end
   end
