@@ -21,7 +21,7 @@ class Api::V1::ResponsesController < Api::V1::ApplicationController
     begin
       @response = @board.responses.find(params[:id])
       render_error Settings.status_code.bad_request, Settings.status_message.bad_request and return unless @response.user_id == current_user.id
-      @response.destroy
+      @response.destroy!
     rescue => e
       render_error Settings.status_code.internal_server_error, e.message and return
     end
