@@ -103,7 +103,7 @@ class Api::V1::ShopsController < Api::V1::ApplicationController
     coin_ids = params[:coin_ids].present? ?  params[:coin_ids]: nil
     # Todo パラメータのリファクタリング
     @shops         = GetShopsService.new(params, coin_ids).call
-    @query_strings = get_query_string_to_hash
+    set_query_string_to_hash
     render 'index', formats: 'json', handlers: 'jbuilder'
   end
 
