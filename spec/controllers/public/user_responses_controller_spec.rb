@@ -6,7 +6,7 @@ RSpec.describe Public::UserResponsesController, type: :controller do
   let!(:response) { FactoryBot.create(:response, user: user) }
   let!(:other_response) { FactoryBot.create(:response) }
 
-  describe 'GET #index', forcus: true do
+  describe 'GET #index' do
 
     context "認証済み" do
       before do
@@ -60,7 +60,7 @@ RSpec.describe Public::UserResponsesController, type: :controller do
     end
   end
 
-  describe 'Delete #destroy', forcus: true do
+  describe 'Delete #destroy' do
     context "認証済み" do
       before do
         sign_in user

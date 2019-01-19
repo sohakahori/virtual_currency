@@ -38,7 +38,7 @@ RSpec.describe "Api::V1::Boards", type: :request do
     end
   end
 
-  describe "POST /api/v1/boards", forcusss: true do
+  describe "POST /api/v1/boards" do
     context "認証済み" do
       it "スレッドが作成される" do
         before_responses_count = Response.count
