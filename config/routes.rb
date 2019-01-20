@@ -58,6 +58,7 @@ Rails.application.routes.draw do
       resources :boards, only: [:index, :create] do
         resources :responses, only: [:index, :create, :destroy]
       end
+      resources :user_responses, only: :index
     end
   end
 end
