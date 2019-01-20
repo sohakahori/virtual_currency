@@ -1,6 +1,6 @@
 class Api::V1::ShopsController < Api::V1::ApplicationController
 
-  api :GET, '/api/vi/shops', '取引所一覧を返します'
+  api :GET, 'v1/shops', '取引所一覧を返します'
   description '取引所一覧を返します'
   formats ['json']
   param :q, String, :desc => "取引所名・住所・会社名"
@@ -108,7 +108,7 @@ class Api::V1::ShopsController < Api::V1::ApplicationController
   end
 
 
-  api :GET, '/api/vi/shops/:id', '取引所を返します'
+  api :GET, '/v1/shops/:id', '取引所を返します'
   description '取引所を返します'
   formats ['json']
   param :id, :number, desc: 'shop id', required: true

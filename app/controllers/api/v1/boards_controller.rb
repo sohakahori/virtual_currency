@@ -3,7 +3,7 @@ class Api::V1::BoardsController < Api::V1::ApplicationController
 
 
 
-  api :GET, '/boards', 'スレッド一覧を返します'
+  api :GET, '/v1/boards', 'スレッド一覧を返します'
   description 'スレッド一覧を返します'
   formats ['json']
   # error 401, 'Unauthorized'
@@ -67,7 +67,7 @@ class Api::V1::BoardsController < Api::V1::ApplicationController
 
 
 
-  api :POST, '/boards', 'スレッド一覧を返します'
+  api :POST, '/v1/boards', 'スレッド一覧を返します'
   description 'スレッド一覧を返します'
   formats ['json']
   error code: 400, description: 'Bad Request'

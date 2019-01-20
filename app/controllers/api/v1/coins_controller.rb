@@ -1,6 +1,6 @@
 class Api::V1::CoinsController < Api::V1::ApplicationController
 
-  api :GET, '/coins', 'コイン一覧を返す'
+  api :GET, '/v1/coins', 'コイン一覧を返す'
   formats ['json']
   # error code: 401, desc: 'Unauthorized'
   # error code: 404, desc: 'Not Found'
