@@ -1,0 +1,11 @@
+status_code:
+  bad_request: 400
+  unauthorized: 401
+  not_found: 404
+  internal_server_error: 500
+
+status_message:
+  bad_request: "Bad Request"
+  unauthorized: "Unauthorized"
+  not_found: "Not Found"
+  internal_server_error: "Internal Server Error"

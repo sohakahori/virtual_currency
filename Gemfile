@@ -29,25 +29,74 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+#
+#
+gem 'therubyracer' # javascript runtime。lessをコンパイルするために必要
+gem 'less-rails', git: 'https://github.com/MustafaZain/less-rails' # Railsでlessを使えるようにする。Bootstrapがlessで書かれているため
+gem 'twitter-bootstrap-rails' # Bootstrapの本体
+
+gem 'faker'
+
+gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
+
+# gem 'devise-bootstrap-views'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
+gem 'rails-i18n'
+
+gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
+
+gem 'dotenv-rails'
+
+# バルクインサート
+gem 'activerecord-import'
+
+gem 'active_decorator'
+
+# クーロン
+gem 'whenever'
+
+# 論理削除
+gem 'paranoia'
+
+
+gem 'jbuilder_pagination', require: 'jbuilder/pagination'
+
+
+# apiドキュメント
+gem 'apipie-rails'
+gem 'maruku'
+
+# config
+gem 'config'
+
 group :development, :test do
+  gem 'rspec-rails', '~> 3.6.0'
+  gem "factory_bot_rails", "~> 4.10.0"
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rails-controller-testing'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'spring-commands-rspec'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

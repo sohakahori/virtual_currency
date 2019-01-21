@@ -1,0 +1,49 @@
+<%= form_for [:admin, @shop], :html => { :class => "form-horizontal shop" } do |f| %>
+
+  <% if @shop.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-body">
+        <ul>
+        <% @shop.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :address, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :address, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :company, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :company, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "取り扱いコイン", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.collection_check_boxes(:coin_ids, Coin.all, :id, :name, include_hidden: false) do |b| %>
+        <%= b.label { b.check_box + b.text } %><br>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+  </div>
+
+<% end %>

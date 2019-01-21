@@ -1,0 +1,41 @@
+ja:
+  activerecord:
+    models:
+      coin: コイン
+      admin: 管理者
+      shop: 取引所
+      user: ユーザー
+      board: スレッド
+      response: レスポンス
+    attributes:
+      coin:
+        name: コイン名
+        name_kana: コイン名(カタカナ)
+        market_rank: 時価ランキング
+      admin:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        first_name: 名前
+        last_name: 苗字
+      shop:
+        name: 取引所名
+        address: 住所
+        company: 会社名
+        coin_shops: 取り扱いコイン
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        first_name: 名前
+        last_name: 苗字
+        nickname: ニックネーム
+      board:
+        title: スレッド名
+      board/responses:
+        body: コメント
+      response:
+        body: コメント
+  errors:
+    messages:
+      not_saved: 入力項目に不備があります
